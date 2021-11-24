@@ -42,7 +42,7 @@ class ball {
         this.y += this.vy;
     }
     colision(){
-        for (let j = 0; j < x; j++){
+        for (let j = 0; j < ball_list.length; j++){
             if (!(this === ball_list[j])){
                 const dx = this.x - ball_list[j].x;
                 const dy = this.y - ball_list[j].y;
@@ -56,28 +56,36 @@ class ball {
     }
 }
 
-var x = document.getElementById('form')['par'].value;
-var ball_list = [];
-for (let i = 1; i <= x; i++){
-    const size = 1.1;
-    let b = new ball(
-        get_random(0+size, width-size),
-        get_random(0+size, height-size),
-        get_random(-4, 4), get_random(-4, 4), 
-        'rgb(' + get_random(0,255) + ',' + get_random(0,255) + ',' + get_random(0,255) +')',
-        size
-    );
-    ball_list.push(b);
+function create_ball(num){
+    for (let i = 1; i <= num; i++){
+        const size = 1.1;
+        let b = new ball(
+            get_random(0+size, width-size),
+            get_random(0+size, height-size),
+            get_random(-4, 4), get_random(-4, 4), 
+            'rgb(' + get_random(0,255) + ',' + get_random(0,255) + ',' + get_random(0,255) +')',
+            size
+        );
+        ball_list.push(b);
+    }
 }
-loop();
     
 function loop(){
     ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
     ctx.fillRect(0, 0, width, height);
-    for (let i = 0; i < x; i++){
+    for (let i = 0; i < ball_list.length; i++){
         ball_list[i].draw();
         ball_list[i].update();
         ball_list[i].colision();
     }
     requestAnimationFrame(loop);
+    setInterval(1000);
+}
+var ball_list = [];
+function main(){
+    var part = document.getElementById('par').value;
+    document.getElementById("button").setAttribute("value", "Reload");
+    document.getElementById("button").setAttribute( "onClick", "javascript: location.reload();");
+    create_ball(part);
+    loop();
 }
