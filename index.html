@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script>
-        function addscr(){
-            var script = document.createElement("script");
-            script.src = "simulation.js";
-            document.body.appendChild(script);
-        }
-    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
@@ -17,11 +10,9 @@
     <h2 style="color: rgb(17, 0, 255);">Mô Phỏng Va chạm đàn hồi</h2>
     <p>Giả thuyết sau mỗi va chạm mất 1% năng lượng</p>
     <p style="color: red;">Lưu ý: Sẽ gây giật lag nếu có quá nhiều hạt, khuyến cáo nhập dưới 4000 hạt</p>
-    <form action="" id="form">
-        <input type="number" name="par" value="">
-        <input type="button" name="Submit" value="Submit" onclick="addscr()">
-        <input type="button" name="Clear" value="Clear" onclick="location.reload()">
-    </form><br>
+    <input type="number" name="par" value="" id="par">
+    <input type="button" onclick="main()" value="Submit" id='button'>
     <canvas width="648" height="500"></canvas>
+    <script src="simulation.js"></script>
 </body>
 </html>
